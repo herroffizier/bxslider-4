@@ -1,6 +1,6 @@
 /**
  * bxSlider v4.2.5
- * Copyright 2013-2015 Steven Wanderski
+ * Copyright 2013-2017 Steven Wanderski
  * Written while drinking Belgian ales and listening to jazz
 
  * Licensed under MIT (http://opensource.org/licenses/MIT)
@@ -1112,7 +1112,7 @@
         slider.touch.start.x = touchPoints[0].pageX;
         slider.touch.start.y = touchPoints[0].pageY;
 
-        if (slider.viewport.get(0).setPointerCapture) {
+        if (slider.viewport.get(0).setPointerCapture && typeof orig.pointerId !== 'undefined') {
           slider.pointerId = orig.pointerId;
           slider.viewport.get(0).setPointerCapture(slider.pointerId);
         }
@@ -1140,7 +1140,7 @@
       slider.viewport.unbind('MSPointerCancel pointercancel', onPointerCancel);
       slider.viewport.unbind('touchmove MSPointerMove pointermove', onTouchMove);
       slider.viewport.unbind('touchend MSPointerUp pointerup', onTouchEnd);
-      if (slider.viewport.get(0).releasePointerCapture) {
+      if (slider.viewport.get(0).releasePointerCapture && typeof slider.pointerId !== 'undefined') {
         slider.viewport.get(0).releasePointerCapture(slider.pointerId);
       }
     };
@@ -1238,7 +1238,7 @@
         }
       }
       slider.viewport.unbind('touchend MSPointerUp pointerup', onTouchEnd);
-      if (slider.viewport.get(0).releasePointerCapture) {
+      if (slider.viewport.get(0).releasePointerCapture && typeof slider.pointerId !== 'undefined') {
         slider.viewport.get(0).releasePointerCapture(slider.pointerId);
       }
     };
